@@ -1,5 +1,10 @@
 from flask import Flask, request, redirect, render_template, url_for
 import csv
+import os
+from dotenv import load_dotenv
+RECAPTCHA_SECRET_KEY = os.getenv('RECAPTCHA_SECRET_KEY')
+RECAPTCHA_SITE_KEY= os.getenv('RECAPTCHA_SITE_KEY')
+import requests
 
 app = Flask(__name__)
 
@@ -31,18 +36,25 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/')
-def index():
-    return render_template('login.html')
-
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
     password = request.form['password']
+    recaptcha_response = request.form['g-recaptcha-response']
+    
+    # Verify reCAPTCHA
+    
+
     if check_credentials(username, password):
         return redirect(url_for('dashboard'))
     else:
         return "Login failed. Please check your credentials."
+
+
+@app.route('/')
+def index():
+    return render_template('login.html')
+
 
 @app.route('/dashboard')
 def dashboard():
