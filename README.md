@@ -1,5 +1,6 @@
 
 # Live Music Directory
+![image](https://github.com/user-attachments/assets/31183a7b-0a37-4d2a-a2f9-905139e7ef99)
 
 This project is a live music directory web application that allows users to register, manage their profiles, upload images and videos, list gigs, and more. The backend is built using Node.js and Express, and it stores data using CSV files rather than a traditional database.
 
